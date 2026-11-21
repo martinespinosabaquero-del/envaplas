@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ENVAPLAS | Almacén de Envases Plásticos - Colombia</title>
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        turquoisemark: {
+                            50: '#f0fbfd',
+                            100: '#dcf4f7',
+                            200: '#bee8ee',
+                            300: '#94d7e2',
+                            400: '#70C3D0', // Color exacto del logo (Turquesa / Celeste)
+                            500: '#52a8b6',
+                            600: '#3e8b97',
+                            700: '#36717c',
+                            800: '#325d66',
+                            900: '#2d4e56',
+                        },
+                        warmgraymark: {
+                            50: '#f7f7f6',
+                            100: '#eae9e7',
+                            200: '#d7d5d2',
+                            300: '#bcbaa4',
+                            400: '#9b9894',
+                            500: '#7D7A77', // Color exacto del texto del logo (Gris cálido)
+                            600: '#696664',
+                            700: '#565351',
+                            800: '#474543',
+                            900: '#2b2928',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #F8FAFB;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #94d7e2;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #70C3D0;
+        }
+    </style>
+</head>
+<body class="font-sans bg-[#F8FAFB] text-warmgraymark-800 antialiased selection:bg-turquoisemark-100 selection:text-turquoisemark-900 flex flex-col min-h-screen">
+
+    <!-- ================= NAVBAR ================= -->
+    <header class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-100 shadow-sm transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- LOGO ENVAPLAS (Vector SVG Fiel al Original) -->
+                <a href="#inicio" class="flex items-center group focus:outline-none" aria-label="Ir al inicio de ENVAPLAS">
+                    <svg viewBox="0 0 340 90" class="h-11 sm:h-12 w-auto transition-transform duration-300 group-hover:scale-[1.02]">
+                        <g>
+                            <!-- Círculo Azul Turquesa -->
+                            <circle cx="42" cy="45" r="38" fill="#70C3D0" />
+                            
+                            <!-- Silueta Lineal Blanca de la Botella -->
+                            <rect x="36" y="18" width="12" height="4" rx="1" fill="#FFFFFF" />
+                            <path d="M38 22 h8 v4 h-8 z" fill="#FFFFFF" />
+                            <path d="M38 26 L32 34 V68 C32 71.5 34.5 74 38 74 H46 C49.5 74 52 71.5 52 68 V34 L46 26 Z" 
+                                  fill="none" stroke="#FFFFFF" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round" />
+                            <line x1="33" y1="42" x2="51" y2="42" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" />
+                            <line x1="33" y1="50" x2="51" y2="50" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" />
+                            <line x1="33" y1="58" x2="51" y2="58" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" />
+
+                            <!-- Texto ENVAPLAS en Gris Cálido con Trazo Blanco -->
+                            <text x="74" y="58" 
+                                  fill="#7D7A77" 
+                                  stroke="#FFFFFF" 
+                                  stroke-width="7" 
+                                  stroke-linejoin="round" 
+                                  paint-order="stroke fill" 
+                                  font-family="'Inter', system-ui, sans-serif" 
+                                  font-weight="900" 
+                                  font-size="44" 
+                                  letter-spacing="-1">ENVAPLAS</text>
+                        </g>
+                    </svg>
+                </a>
+
+                <!-- Navegación de Escritorio -->
+                <nav class="hidden md:flex items-center space-x-8 font-medium text-warmgraymark-700">
+                    <a href="#inicio" class="hover:text-turquoisemark-600 transition-colors py-2">Inicio</a>
+                    <a href="#nosotros" class="hover:text-turquoisemark-600 transition-colors py-2">Nosotros</a>
+                    <a href="#sedes" class="hover:text-turquoisemark-600 transition-colors py-2">Nuestras Sedes</a>
+                    <a href="#contacto" class="hover:text-turquoisemark-600 transition-colors py-2">Contacto</a>
+                </nav>
+
+                <!-- Botón CTA Sede Principal -->
+                <div class="hidden md:flex items-center">
+                    <a href="https://wa.me/573214860027?text=Hola%20ENVAPLAS,%20quisiera%20consultar%20informaci%C3%B3n%20sobre%20envases%20pl%C3%A1sticos." target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center px-5 py-2.5 rounded-full text-sm font-semibold text-white bg-turquoisemark-400 hover:bg-turquoisemark-500 shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-0.5">
+                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
+                        </svg>
+                        WhatsApp Sede Principal
+                    </a>
+                </div>
+
+                <!-- Botón Menú Móvil -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" type="button" class="p-2 rounded-lg text-warmgraymark-600 hover:text-turquoisemark-600 hover:bg-turquoisemark-50 focus:outline-none" aria-label="Abrir menú">
+                        <svg id="menu-icon-open" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                        <svg id="menu-icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Menú desplegable Móvil -->
+        <div id="mobile-menu" class="hidden md:hidden border-b border-gray-100 bg-white px-4 pt-2 pb-6 space-y-3">
+            <a href="#inicio" class="mobile-nav-link block px-3 py-2 rounded-md text-base font-medium text-warmgraymark-700 hover:text-turquoisemark-600 hover:bg-turquoisemark-50">Inicio</a>
+            <a href="#nosotros" class="mobile-nav-link block px-3 py-2 rounded-md text-base font-medium text-warmgraymark-700 hover:text-turquoisemark-600 hover:bg-turquoisemark-50">Nosotros</a>
+            <a href="#sedes" class="mobile-nav-link block px-3 py-2 rounded-md text-base font-medium text-warmgraymark-700 hover:text-turquoisemark-600 hover:bg-turquoisemark-50">Nuestras Sedes</a>
+            <a href="#contacto" class="mobile-nav-link block px-3 py-2 rounded-md text-base font-medium text-warmgraymark-700 hover:text-turquoisemark-600 hover:bg-turquoisemark-50">Contacto</a>
+            <div class="pt-2">
+                <a href="https://wa.me/573214860027?text=Hola%20ENVAPLAS,%20quisiera%20consultar%20informaci%C3%B3n%20sobre%20envases%20pl%C3%A1sticos." target="_blank" rel="noopener noreferrer" class="mobile-nav-link block w-full text-center px-4 py-2.5 rounded-full text-sm font-semibold text-white bg-turquoisemark-400 hover:bg-turquoisemark-500 shadow-sm">
+                    WhatsApp Sede Principal (Villavicencio)
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow">
+        <!-- ================= HERO SECTION ================= -->
+        <section id="inicio" class="relative overflow-hidden pt-12 pb-20 lg:pt-20 lg:pb-28 bg-gradient-to-b from-white via-turquoisemark-50/30 to-[#F8FAFB]">
+            <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-turquoisemark-200/20 rounded-full blur-3xl pointer-events-none"></div>
+            
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="text-center max-w-3xl mx-auto">
+                    <!-- Badge institucional -->
+                    <div class="inline-flex items-center px-3.5 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider bg-turquoisemark-100 text-turquoisemark-700 mb-6 border border-turquoisemark-200">
+                        <span class="w-2 h-2 rounded-full bg-turquoisemark-400 mr-2 animate-pulse"></span>
+                        Red Nacional de Envases Plásticos en Colombia
+                    </div>
+
+                    <!-- Titular Principal -->
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-warmgraymark-900 tracking-tight leading-tight">
+                        Soluciones Confiables en <span class="text-turquoisemark-400">Envases Plásticos</span>
+                    </h1>
+
+                    <!-- Subtítulo con Sedes -->
+                    <p class="mt-6 text-lg sm:text-xl text-warmgraymark-500 leading-relaxed font-normal">
+                        En <strong class="font-semibold text-warmgraymark-700">ENVAPLAS</strong> proveemos soluciones integrales en contenedores y envases plásticos de alta resistencia. Con <strong class="text-warmgraymark-800">Sede Principal en Villavicencio</strong> y puntos de atención estratégicos en <strong class="text-warmgraymark-800">Bogotá, Neiva y Medellín</strong>.
+                    </p>
+
+                    <!-- Botones de Acción Principal -->
+                    <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
+                        <a href="#sedes" class="w-full sm:w-auto inline-flex items-center justify-center px-8 py-3.5 rounded-full text-base font-semibold text-white bg-turquoisemark-400 hover:bg-turquoisemark-500 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-0.5">
+                            Ver Puntos y Ubicaciones
+                            <svg class="w-5 h-5 ml-2 -mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </a>
+                        <a href="https://wa.me/573214860027?text=Hola%20ENVAPLAS,%20quisiera%20consultar%20informaci%C3%B3n." target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto inline-flex items-center justify-center px-8 py-3.5 rounded-full text-base font-semibold text-warmgraymark-700 bg-white hover:bg-gray-50 border border-warmgraymark-200 shadow-sm hover:border-turquoisemark-300 transition-all duration-300">
+                            Escribir a Sede Principal
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Tarjetas destacadas de propuesta de valor -->
+                <div class="mt-16 grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+                        <div class="w-12 h-12 rounded-xl bg-turquoisemark-50 flex items-center justify-center text-turquoisemark-500 mb-4">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-lg font-bold text-warmgraymark-800">4 Ciudades Estratégicas</h3>
+                        <p class="mt-2 text-sm text-warmgraymark-500 leading-relaxed">
+                            Presencia en Villavicencio (Principal), Bogotá, Neiva y Medellín para facilitar el aprovisionamiento de tu empresa.
+                        </p>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+                        <div class="w-12 h-12 rounded-xl bg-turquoisemark-50 flex items-center justify-center text-turquoisemark-500 mb-4">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-lg font-bold text-warmgraymark-800">Ventas al Por Mayor y Detal</h3>
+                        <p class="mt-2 text-sm text-warmgraymark-500 leading-relaxed">
+                            Atención adaptable para pequeños emprendimientos, distribuidores e industrias con requerimientos continuos.
+                        </p>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+                        <div class="w-12 h-12 rounded-xl bg-turquoisemark-50 flex items-center justify-center text-turquoisemark-500 mb-4">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-lg font-bold text-warmgraymark-800">Garantía de Resistencia</h3>
+                        <p class="mt-2 text-sm text-warmgraymark-500 leading-relaxed">
+                            Materiales plásticos seleccionados de alta especificación para un envasado seguro y duradero.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= NOSOTROS / QUIÉNES SOMOS ================= -->
+        <section id="nosotros" class="py-16 sm:py-24 bg-white border-y border-gray-100">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                    
+                    <!-- Columna de texto -->
+                    <div class="lg:col-span-7">
+                        <span class="text-xs font-bold uppercase tracking-wider text-turquoisemark-500 block mb-2">Sobre Nosotros</span>
+                        <h2 class="text-3xl sm:text-4xl font-extrabold text-warmgraymark-900 tracking-tight">
+                            Tu aliado en distribución y abastecimiento de envases plásticos
+                        </h2>
+                        <div class="mt-6 text-warmgraymark-600 space-y-4 leading-relaxed">
+                            <p>
+                                En <strong class="text-warmgraymark-800">ENVAPLAS</strong> nos dedicamos al suministro oportuno de soluciones de almacenamiento y envasado plástico. Nos caracteriza la transparencia en la atención, la seriedad comercial y el respaldo continuo a nuestros clientes.
+                            </p>
+                            <p>
+                                Desde nuestra <strong class="text-warmgraymark-800">Sede Principal en Villavicencio</strong> hemos expandido nuestra red de atención a <strong class="text-warmgraymark-800">Bogotá, Neiva y Medellín</strong>, permitiendo un contacto directo y personalizado para resolver las necesidades particulares de cada región.
+                            </p>
+                        </div>
+
+                        <!-- Pilares corporativos -->
+                        <div class="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-4 pt-6 border-t border-gray-100">
+                            <div>
+                                <h4 class="font-bold text-warmgraymark-800 text-base">Disponibilidad</h4>
+                                <p class="text-xs text-warmgraymark-500 mt-1">Abastecimiento en 4 puntos comerciales del país.</p>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-warmgraymark-800 text-base">Seriedad</h4>
+                                <p class="text-xs text-warmgraymark-500 mt-1">Compromiso en tiempos de entrega y especificaciones.</p>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-warmgraymark-800 text-base">Asesoría</h4>
+                                <p class="text-xs text-warmgraymark-500 mt-1">Orientación personalizada para la elección correcta.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tarjeta Institucional -->
+                    <div class="lg:col-span-5">
+                        <div class="bg-gradient-to-br from-turquoisemark-50 to-white p-8 rounded-3xl border border-turquoisemark-100 shadow-sm relative overflow-hidden">
+                            <div class="relative z-10 space-y-6">
+                                <div class="w-14 h-14 rounded-2xl bg-turquoisemark-400 text-white flex items-center justify-center shadow-md">
+                                    <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5m0 0h5m-5 0v-4m0 4h5m-5 0v-4m5 4v-4m-5-10h.01M12 7h.01M12 11h.01M12 15h.01"></path>
+                                    </svg>
+                                </div>
+
+                                <h3 class="text-xl font-bold text-warmgraymark-900">
+                                    Cobertura Regional y Cercanía
+                                </h3>
+                                
+                                <p class="text-sm text-warmgraymark-600 leading-relaxed">
+                                    Nuestra red de almacenes garantiza atención amable y profesional. Encuentra el punto más cercano a tu ubicación para realizar consultas o recibir pedidos.
+                                </p>
+
+                                <div class="pt-4 border-t border-turquoisemark-200/50 flex items-center justify-between">
+                                    <span class="text-xs font-semibold text-warmgraymark-500">Red de Almacenes ENVAPLAS</span>
+                                    <span class="inline-flex items-center text-xs font-bold text-turquoisemark-600">
+                                        4 Puntos de Atención
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= NUESTRAS SEDES Y NAVEGADOR DE MAPAS ================= -->
+        <section id="sedes" class="py-16 sm:py-24 bg-[#F8FAFB]">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="text-center max-w-2xl mx-auto mb-10">
+                    <span class="text-xs font-bold uppercase tracking-wider text-turquoisemark-500 block mb-2">Presencia en Colombia</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-warmgraymark-900 tracking-tight">
+                        Nuestras Sedes y Puntos de Atención
+                    </h2>
+                    <p class="mt-3 text-warmgraymark-500 text-base">
+                        Selecciona la ciudad de tu interés para consultar su ubicación exacta, mapa interactivo y línea directa de WhatsApp.
+                    </p>
+                </div>
+
+                <!-- Tabs Selector de Ciudad -->
+                <div class="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mb-10">
+                    <!-- Tab Villavicencio -->
+                    <button type="button" data-city="villavicencio" class="city-tab px-5 py-3 rounded-2xl text-sm font-bold transition-all duration-200 flex items-center bg-turquoisemark-400 text-white shadow-md">
+                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                        </svg>
+                        Villavicencio
+                        <span class="ml-2 text-[10px] uppercase font-extrabold tracking-wider bg-white/20 px-2 py-0.5 rounded-full text-white">Principal</span>
+                    </button>
+
+                    <!-- Tab Bogotá -->
+                    <button type="button" data-city="bogota" class="city-tab px-5 py-3 rounded-2xl text-sm font-bold transition-all duration-200 flex items-center bg-white text-warmgraymark-700 hover:bg-turquoisemark-50 border border-gray-200">
+                        <svg class="w-4 h-4 mr-2 text-warmgraymark-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                        </svg>
+                        Bogotá D.C.
+                    </button>
+
+                    <!-- Tab Neiva -->
+                    <button type="button" data-city="neiva" class="city-tab px-5 py-3 rounded-2xl text-sm font-bold transition-all duration-200 flex items-center bg-white text-warmgraymark-700 hover:bg-turquoisemark-50 border border-gray-200">
+                        <svg class="w-4 h-4 mr-2 text-warmgraymark-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                        </svg>
+                        Neiva
+                    </button>
+
+                    <!-- Tab Medellín -->
+                    <button type="button" data-city="medellin" class="city-tab px-5 py-3 rounded-2xl text-sm font-bold transition-all duration-200 flex items-center bg-white text-warmgraymark-700 hover:bg-turquoisemark-50 border border-gray-200">
+                        <svg class="w-4 h-4 mr-2 text-warmgraymark-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                        </svg>
+                        Medellín
+                    </button>
+                </div>
+
+                <!-- Visor Dinámico de la Sede Seleccionada -->
+                <div class="bg-white rounded-3xl shadow-lg border border-gray-100 p-6 sm:p-8 mb-14">
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+                        
+                        <!-- Información Detallada de la Sede Activa -->
+                        <div class="lg:col-span-5 flex flex-col justify-between space-y-6">
+                            <div>
+                                <!-- Insignia de Tipo de Sede -->
+                                <div class="flex items-center space-x-2 mb-3">
+                                    <span id="active-badge" class="px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-turquoisemark-100 text-turquoisemark-800 border border-turquoisemark-300">
+                                        ⭐ Sede Principal
+                                    </span>
+                                    <span id="active-region" class="text-xs font-semibold text-warmgraymark-500">
+                                        Meta, Colombia
+                                    </span>
+                                </div>
+
+                                <h3 id="active-title" class="text-2xl sm:text-3xl font-extrabold text-warmgraymark-900">
+                                    Villavicencio
+                                </h3>
+
+                                <p id="active-desc" class="text-sm text-warmgraymark-500 mt-2 leading-relaxed">
+                                    Nuestra sede matriz de distribución y atención general para todo el departamento del Meta y zona oriental.
+                                </p>
+                            </div>
+
+                            <!-- Datos de Contacto Directos -->
+                            <div class="space-y-4 pt-4 border-t border-gray-100">
+                                <!-- WhatsApp -->
+                                <div class="flex items-start">
+                                    <div class="w-9 h-9 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center mr-3 flex-shrink-0">
+                                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                            <path d="M12.012 2c-5.506 0-9.989 4.478-9.99 9.984 0 1.762.459 3.48 1.332 5.001L2 22l5.122-1.341c1.47.801 3.136 1.225 4.887 1.226h.004c5.506 0 9.989-4.477 9.99-9.984 0-2.668-1.039-5.176-2.926-7.062A9.925 9.925 0 0012.012 2zM12.013 20.151h-.003a8.31 8.31 0 01-4.238-1.161l-.304-.181-3.146.823.839-3.064-.198-.316a8.303 8.303 0 01-1.272-4.436c0-4.577 3.724-8.301 8.304-8.301 2.217 0 4.302.863 5.869 2.43 1.567 1.568 2.428 3.654 2.427 5.872 0 4.578-3.725 8.302-8.301 8.302zm4.551-6.22c-.25-.125-1.476-.728-1.705-.811-.229-.083-.396-.125-.563.125-.166.25-.646.811-.792.978-.146.167-.292.188-.542.063-.25-.125-1.054-.388-2.008-1.239-.742-.662-1.243-1.48-1.389-1.73-.146-.25-.015-.385.11-.509.112-.112.25-.292.375-.438.125-.146.167-.25.25-.417.083-.167.042-.313-.021-.438-.063-.125-.563-1.354-.771-1.854-.203-.487-.41-.421-.563-.429l-.479-.008c-.167 0-.438.063-.667.313s-.875.854-.875 2.083c0 1.229.896 2.417 1.021 2.583.125.167 1.763 2.693 4.272 3.778.597.258 1.063.412 1.427.528.6.19 1.146.163 1.577.099.481-.072 1.476-.604 1.684-1.188.208-.583.208-1.083.146-1.188-.063-.104-.229-.167-.479-.292z"/>
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <span class="block text-xs font-bold text-warmgraymark-400 uppercase tracking-wider">Línea WhatsApp Sede</span>
+                                        <a id="active-phone-link" href="https://wa.me/573214860027?text=Hola%20ENVAPLAS,%20me%20comunico%20con%20la%20sede%20Villavicencio" target="_blank" rel="noopener noreferrer" class="text-base font-extrabold text-warmgraymark-900 hover:text-turquoisemark-600 transition-colors">
+                                            +57 <span id="active-phone-display">321 486 0027</span>
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <!-- Horario -->
+                                <div class="flex items-start">
+                                    <div class="w-9 h-9 rounded-xl bg-turquoisemark-50 text-turquoisemark-600 flex items-center justify-center mr-3 flex-shrink-0">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <span class="block text-xs font-bold text-warmgraymark-400 uppercase tracking-wider">Horario de Atención</span>
+                                        <span class="text-sm font-semibold text-warmgraymark-700 block">Lunes a Viernes: 8:00 AM - 6:00 PM</span>
+                                        <span class="text-xs text-warmgraymark-500">Sábados: 8:30 AM - 2:00 PM</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Botones CTA de la Sede Activa -->
+                            <div class="pt-2 flex flex-col sm:flex-row gap-3">
+                                <a id="active-wa-btn" href="https://wa.me/573214860027?text=Hola%20ENVAPLAS,%20quisiera%20consultar%20con%20la%20sede%20Villavicencio." target="_blank" rel="noopener noreferrer" class="flex-1 inline-flex items-center justify-center px-5 py-3 rounded-xl text-xs font-bold text-white bg-emerald-600 hover:bg-emerald-700 shadow-sm transition-all">
+                                    <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M12.012 2c-5.506 0-9.989 4.478-9.99 9.984 0 1.762.459 3.48 1.332 5.001L2 22l5.122-1.341c1.47.801 3.136 1.225 4.887 1.226h.004c5.506 0 9.989-4.477 9.99-9.984 0-2.668-1.039-5.176-2.926-7.062A9.925 9.925 0 0012.012 2z"/>
+                                    </svg>
+                                    Contactar Sede por WhatsApp
+                                </a>
+
+                                <a id="active-gmap-btn" href="https://www.google.com/maps/search/?api=1&query=4.150003004666293,-73.63253638752552" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center px-4 py-3 rounded-xl text-xs font-bold text-warmgraymark-700 bg-gray-100 hover:bg-gray-200 transition-colors">
+                                    Abrir en Google Maps
+                                    <svg class="w-3.5 h-3.5 ml-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                                    </svg>
+                                </a>
+                            </div>
+
+                        </div>
+
+                        <!-- Iframe del Mapa Interactivo -->
+                        <div class="lg:col-span-7 h-[360px] sm:h-[420px] rounded-2xl overflow-hidden border border-gray-200 bg-gray-100 shadow-inner relative">
+                            <iframe 
+                                id="map-iframe"
+                                src="https://www.google.com/maps/embed?pb=!3m2!1ses!2sco!4v1795271351682!5m2!1ses!2sco!6m8!1m7!1suQqO3FGhoh8yI2G8lGpuYw!2m2!1d4.150003004666293!2d-73.63253638752552!3f342.6333219905092!4f0.18031939307978462!5f0.7820865974627469" 
+                                class="w-full h-full border-0" 
+                                allowfullscreen="" 
+                                loading="lazy" 
+                                referrerpolicy="strict-origin-when-cross-origin">
+                            </iframe>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Resumen Rápido en 4 Tarjetas -->
+                <div class="mt-8">
+                    <h4 class="text-center text-sm font-bold uppercase tracking-wider text-warmgraymark-500 mb-6">
+                        Directorio Directo de Puntos de Atención
+                    </h4>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                        
+                        <!-- Card 1: Villavicencio -->
+                        <div class="bg-white p-5 rounded-2xl border border-turquoisemark-200 shadow-sm relative overflow-hidden group hover:border-turquoisemark-400 transition-all">
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="font-extrabold text-warmgraymark-900 text-lg">Villavicencio</span>
+                                <span class="text-[10px] font-extrabold uppercase px-2 py-0.5 rounded-md bg-turquoisemark-100 text-turquoisemark-800">Principal</span>
+                            </div>
+                            <p class="text-xs text-warmgraymark-500 mb-4">Meta, Colombia</p>
+                            <a href="https://wa.me/573214860027?text=Hola%20ENVAPLAS,%20me%20comunico%20con%20la%20Sede%20Principal%20en%20Villavicencio." target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-xs font-bold text-emerald-600 hover:text-emerald-700 bg-emerald-50 px-3 py-2 rounded-xl w-full justify-center transition-colors">
+                                <svg class="w-3.5 h-3.5 mr-1.5" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12.012 2c-5.506 0-9.989 4.478-9.99 9.984 0 1.762.459 3.48 1.332 5.001L2 22l5.122-1.341c1.47.801 3.136 1.225 4.887 1.226h.004c5.506 0 9.989-4.477 9.99-9.984 0-2.668-1.039-5.176-2.926-7.062A9.925 9.925 0 0012.012 2z"/>
+                                </svg>
+                                321 486 0027
+                            </a>
+                        </div>
+
+                        <!-- Card 2: Bogotá -->
+                        <div class="bg-white p-5 rounded-2xl border border-gray-100 shadow-sm relative overflow-hidden group hover:border-turquoisemark-300 transition-all">
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="font-extrabold text-warmgraymark-900 text-lg">Bogotá D.C.</span>
+                                <span class="text-[10px] font-semibold uppercase px-2 py-0.5 rounded-md bg-gray-100 text-warmgraymark-600">Punto</span>
+                            </div>
+                            <p class="text-xs text-warmgraymark-500 mb-4">Cundinamarca, Colombia</p>
+                            <a href="https://wa.me/573227807110?text=Hola%20ENVAPLAS,%20me%20comunico%20con%20el%20punto%20de%20Bogot%C3%A1." target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-xs font-bold text-emerald-600 hover:text-emerald-700 bg-emerald-50 px-3 py-2 rounded-xl w-full justify-center transition-colors">
+                                <svg class="w-3.5 h-3.5 mr-1.5" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12.012 2c-5.506 0-9.989 4.478-9.99 9.984 0 1.762.459 3.48 1.332 5.001L2 22l5.122-1.341c1.47.801 3.136 1.225 4.887 1.226h.004c5.506 0 9.989-4.477 9.99-9.984 0-2.668-1.039-5.176-2.926-7.062A9.925 9.925 0 0012.012 2z"/>
+                                </svg>
+                                322 780 7110
+                            </a>
+                        </div>
+
+                        <!-- Card 3: Neiva -->
+                        <div class="bg-white p-5 rounded-2xl border border-gray-100 shadow-sm relative overflow-hidden group hover:border-turquoisemark-300 transition-all">
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="font-extrabold text-warmgraymark-900 text-lg">Neiva</span>
+                                <span class="text-[10px] font-semibold uppercase px-2 py-0.5 rounded-md bg-gray-100 text-warmgraymark-600">Punto</span>
+                            </div>
+                            <p class="text-xs text-warmgraymark-500 mb-4">Huila, Colombia</p>
+                            <a href="https://wa.me/573166290704?text=Hola%20ENVAPLAS,%20me%20comunico%20con%20el%20punto%20de%20Neiva." target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-xs font-bold text-emerald-600 hover:text-emerald-700 bg-emerald-50 px-3 py-2 rounded-xl w-full justify-center transition-colors">
+                                <svg class="w-3.5 h-3.5 mr-1.5" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12.012 2c-5.506 0-9.989 4.478-9.99 9.984 0 1.762.459 3.48 1.332 5.001L2 22l5.122-1.341c1.47.801 3.136 1.225 4.887 1.226h.004c5.506 0 9.989-4.477 9.99-9.984 0-2.668-1.039-5.176-2.926-7.062A9.925 9.925 0 0012.012 2z"/>
+                                </svg>
+                                316 629 0704
+                            </a>
+                        </div>
+
+                        <!-- Card 4: Medellín -->
+                        <div class="bg-white p-5 rounded-2xl border border-gray-100 shadow-sm relative overflow-hidden group hover:border-turquoisemark-300 transition-all">
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="font-extrabold text-warmgraymark-900 text-lg">Medellín</span>
+                                <span class="text-[10px] font-semibold uppercase px-2 py-0.5 rounded-md bg-gray-100 text-warmgraymark-600">Punto</span>
+                            </div>
+                            <p class="text-xs text-warmgraymark-500 mb-4">Antioquia, Colombia</p>
+                            <a href="https://wa.me/573204683578?text=Hola%20ENVAPLAS,%20me%20comunico%20con%20el%20punto%20de%20Medell%C3%ADn." target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-xs font-bold text-emerald-600 hover:text-emerald-700 bg-emerald-50 px-3 py-2 rounded-xl w-full justify-center transition-colors">
+                                <svg class="w-3.5 h-3.5 mr-1.5" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12.012 2c-5.506 0-9.989 4.478-9.99 9.984 0 1.762.459 3.48 1.332 5.001L2 22l5.122-1.341c1.47.801 3.136 1.225 4.887 1.226h.004c5.506 0 9.989-4.477 9.99-9.984 0-2.668-1.039-5.176-2.926-7.062A9.925 9.925 0 0012.012 2z"/>
+                                </svg>
+                                320 468 3578
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ================= FORMULARIO DE CONTACTO GENERAL ================= -->
+        <section id="contacto" class="py-16 sm:py-24 bg-white border-t border-gray-100 relative">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="max-w-3xl mx-auto bg-white rounded-3xl p-8 sm:p-12 border border-gray-100 shadow-xl shadow-warmgraymark-900/5">
+                    <div class="text-center mb-10">
+                        <span class="text-xs font-bold uppercase tracking-wider text-turquoisemark-500 block mb-2">Formulario de Consulta Directa por WhatsApp</span>
+                        <h2 class="text-3xl font-extrabold text-warmgraymark-900 tracking-tight">
+                            ¿Tienes alguna duda o requerimiento?
+                        </h2>
+                        <p class="mt-2 text-warmgraymark-500 text-sm">
+                            Diligencia el formulario y al presionar enviar se abrirá tu conversación de WhatsApp con el encargado de la sede elegida.
+                        </p>
+                    </div>
+
+                    <!-- Mensaje de éxito / Redirección -->
+                    <div id="contact-success" class="hidden mb-8 p-4 bg-emerald-50 border border-emerald-200 rounded-2xl text-emerald-800 flex items-start">
+                        <svg class="w-6 h-6 text-emerald-500 mr-3 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                        <div>
+                            <h4 class="font-bold text-sm">¡Abríendo conversación en WhatsApp!</h4>
+                            <p class="text-xs mt-0.5 text-emerald-700">Se está abriendo el chat de la sede seleccionada con tu mensaje estructurado. Si la ventana no se abrió automáticamente, <a id="fallback-wa-link" href="#" target="_blank" class="underline font-bold">haz clic aquí para abrir WhatsApp manualmente</a>.</p>
+                        </div>
+                    </div>
+
+                    <form id="contact-form" class="space-y-6">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                            <!-- Nombre -->
+                            <div>
+                                <label for="name" class="block text-xs font-bold uppercase tracking-wider text-warmgraymark-700 mb-2">Nombre completo *</label>
+                                <input type="text" id="name" required placeholder="Ej. Juan Pérez" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-turquoisemark-400 focus:border-transparent text-sm text-warmgraymark-800 transition-all">
+                            </div>
+
+                            <!-- Teléfono / WhatsApp -->
+                            <div>
+                                <label for="phone" class="block text-xs font-bold uppercase tracking-wider text-warmgraymark-700 mb-2">Teléfono o WhatsApp *</label>
+                                <input type="tel" id="phone" required placeholder="Ej. +57 300 000 0000" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-turquoisemark-400 focus:border-transparent text-sm text-warmgraymark-800 transition-all">
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                            <!-- Selector de Sede a Contactar -->
+                            <div>
+                                <label for="target-city" class="block text-xs font-bold uppercase tracking-wider text-warmgraymark-700 mb-2">Sede / Punto de Destino *</label>
+                                <select id="target-city" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-turquoisemark-400 focus:border-transparent text-sm text-warmgraymark-800 transition-all bg-white font-medium">
+                                    <option value="villavicencio">Villavicencio (Sede Principal)</option>
+                                    <option value="bogota">Bogotá D.C.</option>
+                                    <option value="neiva">Neiva</option>
+                                    <option value="medellin">Medellín</option>
+                                </select>
+                            </div>
+
+                            <!-- Motivo -->
+                            <div>
+                                <label for="subject" class="block text-xs font-bold uppercase tracking-wider text-warmgraymark-700 mb-2">Motivo de consulta</label>
+                                <select id="subject" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-turquoisemark-400 focus:border-transparent text-sm text-warmgraymark-800 transition-all bg-white">
+                                    <option value="Información General de Almacén">Información General de Almacén</option>
+                                    <option value="Atención Empresarial / Mayorista">Atención Empresarial / Mayorista</option>
+                                    <option value="Consultar Horarios y Ubicación">Consultar Horarios y Ubicación</option>
+                                    <option value="Otro Requerimiento">Otro Requerimiento</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Correo Electrónico -->
+                        <div>
+                            <label for="email" class="block text-xs font-bold uppercase tracking-wider text-warmgraymark-700 mb-2">Correo Electrónico (Opcional)</label>
+                            <input type="email" id="email" placeholder="correo@ejemplo.com" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-turquoisemark-400 focus:border-transparent text-sm text-warmgraymark-800 transition-all">
+                        </div>
+
+                        <!-- Mensaje -->
+                        <div>
+                            <label for="message" class="block text-xs font-bold uppercase tracking-wider text-warmgraymark-700 mb-2">Mensaje *</label>
+                            <textarea id="message" rows="4" required placeholder="Escribe aquí las especificaciones o dudas que deseas consultar..." class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-turquoisemark-400 focus:border-transparent text-sm text-warmgraymark-800 transition-all resize-none"></textarea>
+                        </div>
+
+                        <!-- Botón Enviar dinámico de WhatsApp -->
+                        <div class="space-y-2">
+                            <button type="submit" id="submit-btn" class="w-full py-4 px-8 rounded-full text-base font-bold text-white bg-emerald-600 hover:bg-emerald-700 shadow-md hover:shadow-lg transition-all duration-300 flex items-center justify-center">
+                                <svg class="w-5 h-5 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12.012 2c-5.506 0-9.989 4.478-9.99 9.984 0 1.762.459 3.48 1.332 5.001L2 22l5.122-1.341c1.47.801 3.136 1.225 4.887 1.226h.004c5.506 0 9.989-4.477 9.99-9.984 0-2.668-1.039-5.176-2.926-7.062A9.925 9.925 0 0012.012 2zM12.013 20.151h-.003a8.31 8.31 0 01-4.238-1.161l-.304-.181-3.146.823.839-3.064-.198-.316a8.303 8.303 0 01-1.272-4.436c0-4.577 3.724-8.301 8.304-8.301 2.217 0 4.302.863 5.869 2.43 1.567 1.568 2.428 3.654 2.427 5.872 0 4.578-3.725 8.302-8.301 8.302zm4.551-6.22c-.25-.125-1.476-.728-1.705-.811-.229-.083-.396-.125-.563.125-.166.25-.646.811-.792.978-.146.167-.292.188-.542.063-.25-.125-1.054-.388-2.008-1.239-.742-.662-1.243-1.48-1.389-1.73-.146-.25-.015-.385.11-.509.112-.112.25-.292.375-.438.125-.146.167-.25.25-.417.083-.167.042-.313-.021-.438-.063-.125-.563-1.354-.771-1.854-.203-.487-.41-.421-.563-.429l-.479-.008c-.167 0-.438.063-.667.313s-.875.854-.875 2.083c0 1.229.896 2.417 1.021 2.583.125.167 1.763 2.693 4.272 3.778.597.258 1.063.412 1.427.528.6.19 1.146.163 1.577.099.481-.072 1.476-.604 1.684-1.188.208-.583.208-1.083.146-1.188-.063-.104-.229-.167-.479-.292z"/>
+                                </svg>
+                                <span id="submit-btn-text">Enviar por WhatsApp a Villavicencio (+57 321 486 0027)</span>
+                            </button>
+                            <p class="text-xs text-center text-warmgraymark-500">
+                                Al presionar el botón se enviará la información estructurada directamente al WhatsApp oficial de la sede elegida.
+                            </p>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <!-- ================= BOTÓN FLOTANTE WHATSAPP ================= -->
+    <a id="floating-wa" href="https://wa.me/573214860027?text=Hola%20ENVAPLAS,%20quisiera%20consultar%20informaci%C3%B3n." target="_blank" rel="noopener noreferrer" class="fixed bottom-6 right-6 z-40 bg-emerald-500 hover:bg-emerald-600 text-white p-4 rounded-full shadow-2xl hover:scale-110 transition-all duration-300 flex items-center justify-center group" aria-label="Contactar por WhatsApp">
+        <span class="absolute right-full mr-3 bg-warmgraymark-900 text-white text-xs font-medium px-3 py-1.5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap shadow-md pointer-events-none">
+            ¡Escríbenos a Sede Principal! (321 486 0027)
+        </span>
+        <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12.012 2c-5.506 0-9.989 4.478-9.99 9.984 0 1.762.459 3.48 1.332 5.001L2 22l5.122-1.341c1.47.801 3.136 1.225 4.887 1.226h.004c5.506 0 9.989-4.477 9.99-9.984 0-2.668-1.039-5.176-2.926-7.062A9.925 9.925 0 0012.012 2zM12.013 20.151h-.003a8.31 8.31 0 01-4.238-1.161l-.304-.181-3.146.823.839-3.064-.198-.316a8.303 8.303 0 01-1.272-4.436c0-4.577 3.724-8.301 8.304-8.301 2.217 0 4.302.863 5.869 2.43 1.567 1.568 2.428 3.654 2.427 5.872 0 4.578-3.725 8.302-8.301 8.302zm4.551-6.22c-.25-.125-1.476-.728-1.705-.811-.229-.083-.396-.125-.563.125-.166.25-.646.811-.792.978-.146.167-.292.188-.542.063-.25-.125-1.054-.388-2.008-1.239-.742-.662-1.243-1.48-1.389-1.73-.146-.25-.015-.385.11-.509.112-.112.25-.292.375-.438.125-.146.167-.25.25-.417.083-.167.042-.313-.021-.438-.063-.125-.563-1.354-.771-1.854-.203-.487-.41-.421-.563-.429l-.479-.008c-.167 0-.438.063-.667.313s-.875.854-.875 2.083c0 1.229.896 2.417 1.021 2.583.125.167 1.763 2.693 4.272 3.778.597.258 1.063.412 1.427.528.6.19 1.146.163 1.577.099.481-.072 1.476-.604 1.684-1.188.208-.583.208-1.083.146-1.188-.063-.104-.229-.167-.479-.292z"/>
+        </svg>
+    </a>
+
+    <!-- ================= FOOTER ================= -->
+    <footer class="bg-warmgraymark-900 text-white pt-16 pb-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-10 pb-12 border-b border-warmgraymark-800">
+                
+                <!-- Columna Logo & Info -->
+                <div class="md:col-span-5 space-y-4">
+                    <div class="flex items-center">
+                        <svg viewBox="0 0 340 90" class="h-10 w-auto">
+                            <g>
+                                <circle cx="42" cy="45" r="38" fill="#70C3D0" />
+                                <rect x="36" y="18" width="12" height="4" rx="1" fill="#FFFFFF" />
+                                <path d="M38 22 h8 v4 h-8 z" fill="#FFFFFF" />
+                                <path d="M38 26 L32 34 V68 C32 71.5 34.5 74 38 74 H46 C49.5 74 52 71.5 52 68 V34 L46 26 Z" 
+                                      fill="none" stroke="#FFFFFF" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round" />
+                                <line x1="33" y1="42" x2="51" y2="42" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" />
+                                <line x1="33" y1="50" x2="51" y2="50" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" />
+                                <line x1="33" y1="58" x2="51" y2="58" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" />
+                                <text x="74" y="58" fill="#FFFFFF" font-family="'Inter', system-ui, sans-serif" font-weight="900" font-size="44" letter-spacing="-1">ENVAPLAS</text>
+                            </g>
+                        </svg>
+                    </div>
+                    <p class="text-sm text-warmgraymark-300 max-w-sm leading-relaxed">
+                        Almacén especializado en soluciones de envases plásticos. Sede Principal en Villavicencio y puntos de atención en Bogotá, Neiva y Medellín.
+                    </p>
+                </div>
+
+                <!-- Enlaces Rápidos -->
+                <div class="md:col-span-3 space-y-3">
+                    <h4 class="text-xs font-bold uppercase tracking-wider text-turquoisemark-400">Navegación</h4>
+                    <ul class="space-y-2 text-sm text-warmgraymark-300">
+                        <li><a href="#inicio" class="hover:text-turquoisemark-400 transition-colors">Inicio</a></li>
+                        <li><a href="#nosotros" class="hover:text-turquoisemark-400 transition-colors">Nosotros</a></li>
+                        <li><a href="#sedes" class="hover:text-turquoisemark-400 transition-colors">Nuestras Sedes</a></li>
+                        <li><a href="#contacto" class="hover:text-turquoisemark-400 transition-colors">Contacto</a></li>
+                    </ul>
+                </div>
+
+                <!-- Resumen de Sedes -->
+                <div class="md:col-span-4 space-y-3">
+                    <h4 class="text-xs font-bold uppercase tracking-wider text-turquoisemark-400">Contactos por Ciudad</h4>
+                    <ul class="space-y-1.5 text-xs text-warmgraymark-300">
+                        <li><strong class="text-white">Villavicencio (Principal):</strong> +57 321 486 0027</li>
+                        <li><strong class="text-white">Bogotá D.C.:</strong> +57 322 780 7110</li>
+                        <li><strong class="text-white">Neiva:</strong> +57 316 629 0704</li>
+                        <li><strong class="text-white">Medellín:</strong> +57 320 468 3578</li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-warmgraymark-400">
+                <p>&copy; 2026 ENVAPLAS. Todos los derechos reservados.</p>
+                <p class="mt-2 sm:mt-0">Almacén de Envases Plásticos - Colombia</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ================= JAVASCRIPT DINÁMICO DE SEDES ================= -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Base de Datos de Sedes con números de WhatsApp
+            const citiesData = {
+                villavicencio: {
+                    title: 'Villavicencio',
+                    badge: '⭐ Sede Principal',
+                    region: 'Meta, Colombia',
+                    desc: 'Nuestra sede matriz de distribución y atención general para todo el departamento del Meta y la región de los Llanos Orientales.',
+                    phoneDisplay: '321 486 0027',
+                    phoneRaw: '573214860027',
+                    iframe: 'https://www.google.com/maps/embed?pb=!3m2!1ses!2sco!4v1795271351682!5m2!1ses!2sco!6m8!1m7!1suQqO3FGhoh8yI2G8lGpuYw!2m2!1d4.150003004666293!2d-73.63253638752552!3f342.6333219905092!4f0.18031939307978462!5f0.7820865974627469',
+                    gmapsLink: 'https://www.google.com/maps/search/?api=1&query=4.150003,-73.632536'
+                },
+                bogota: {
+                    title: 'Bogotá D.C.',
+                    badge: 'Punto de Atención',
+                    region: 'Cundinamarca, Colombia',
+                    desc: 'Punto de atención estratégico en la capital para servicio rápido a industrias y emprendedores de Bogotá y Cundinamarca.',
+                    phoneDisplay: '322 780 7110',
+                    phoneRaw: '573227807110',
+                    iframe: 'https://www.google.com/maps/embed?pb=!3m2!1ses!2sco!4v1795271705434!5m2!1ses!2sco!6m8!1m7!1srr7xSxxypgu2mMVW2zaJzw!2m2!1d4.627562627025669!2d-74.11781381666763!3f67.95801!4f0!5f0.7820865974627469',
+                    gmapsLink: 'https://www.google.com/maps/search/?api=1&query=4.627563,-74.117814'
+                },
+                neiva: {
+                    title: 'Neiva',
+                    badge: 'Punto de Atención',
+                    region: 'Huila, Colombia',
+                    desc: 'Punto comercial en el departamento del Huila para abastecimiento local y asesoría cercana en envases plásticos.',
+                    phoneDisplay: '316 629 0704',
+                    phoneRaw: '573166290704',
+                    iframe: 'https://www.google.com/maps/embed?pb=!3m2!1ses!2sco!4v1795271842716!5m2!1ses!2sco!6m8!1m7!1s3_lc5kmmKMWSVuE6W3uOTw!2m2!1d2.930637917805426!2d-75.29340037714432!3f235.39126314643195!4f3.6174051193265058!5f0.7820865974627469',
+                    gmapsLink: 'https://www.google.com/maps/search/?api=1&query=2.930638,-75.293400'
+                },
+                medellin: {
+                    title: 'Medellín',
+                    badge: 'Punto de Atención',
+                    region: 'Antioquia, Colombia',
+                    desc: 'Punto de abastecimiento directo para la región antioqueña con respuesta oportuna a consultas y despacho de materiales.',
+                    phoneDisplay: '320 468 3578',
+                    phoneRaw: '573204683578',
+                    iframe: 'https://www.google.com/maps/embed?pb=!3m2!1ses-419!2sco!4v1795272477080!5m2!1ses-419!2sco!6m8!1m7!1s1iRAOPc4So1kmCohFg3_Mw!2m2!1d6.251993917626439!2d-75.57363945124445!3f340.72466786731394!4f3.7163659700192113!5f0.7820865974627469',
+                    gmapsLink: 'https://www.google.com/maps/search/?api=1&query=6.251994,-75.573639'
+                }
+            };
+
+            // Elementos DOM del Visor
+            const tabs = document.querySelectorAll('.city-tab');
+            const activeTitle = document.getElementById('active-title');
+            const activeBadge = document.getElementById('active-badge');
+            const activeRegion = document.getElementById('active-region');
+            const activeDesc = document.getElementById('active-desc');
+            const activePhoneDisplay = document.getElementById('active-phone-display');
+            const activePhoneLink = document.getElementById('active-phone-link');
+            const activeWaBtn = document.getElementById('active-wa-btn');
+            const activeGmapBtn = document.getElementById('active-gmap-btn');
+            const mapIframe = document.getElementById('map-iframe');
+
+            // Elementos DOM del Formulario de Contacto
+            const targetCitySelect = document.getElementById('target-city');
+            const submitBtnText = document.getElementById('submit-btn-text');
+
+            // Actualiza el texto del botón del formulario según la sede elegida
+            function updateFormButtonText(cityKey) {
+                const data = citiesData[cityKey];
+                if (!data) return;
+                submitBtnText.textContent = `Enviar por WhatsApp a ${data.title} (+57 ${data.phoneDisplay})`;
+            }
+
+            // Función para cambiar de Sede en la sección de Sedes
+            function setCity(cityKey) {
+                const data = citiesData[cityKey];
+                if (!data) return;
+
+                // Actualizar textos e información
+                activeTitle.textContent = data.title;
+                activeBadge.textContent = data.badge;
+                activeRegion.textContent = data.region;
+                activeDesc.textContent = data.desc;
+                activePhoneDisplay.textContent = data.phoneDisplay;
+
+                const waMessage = encodeURIComponent(`Hola ENVAPLAS, me comunico con la sede de ${data.title}.`);
+                const waUrl = `https://wa.me/${data.phoneRaw}?text=${waMessage}`;
+
+                activePhoneLink.href = waUrl;
+                activeWaBtn.href = waUrl;
+                activeGmapBtn.href = data.gmapsLink;
+                mapIframe.src = data.iframe;
+
+                // Actualizar estilos de los Tabs
+                tabs.forEach(tab => {
+                    const key = tab.getAttribute('data-city');
+                    if (key === cityKey) {
+                        tab.className = 'city-tab px-5 py-3 rounded-2xl text-sm font-bold transition-all duration-200 flex items-center bg-turquoisemark-400 text-white shadow-md';
+                        const icon = tab.querySelector('svg');
+                        if (icon) icon.className = 'w-4 h-4 mr-2 text-white';
+                    } else {
+                        tab.className = 'city-tab px-5 py-3 rounded-2xl text-sm font-bold transition-all duration-200 flex items-center bg-white text-warmgraymark-700 hover:bg-turquoisemark-50 border border-gray-200';
+                        const icon = tab.querySelector('svg');
+                        if (icon) icon.className = 'w-4 h-4 mr-2 text-warmgraymark-400';
+                    }
+                });
+
+                // Sincronizar el selector del formulario
+                if (targetCitySelect) {
+                    targetCitySelect.value = cityKey;
+                    updateFormButtonText(cityKey);
+                }
+            }
+
+            // Listeners para los Tabs
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    const cityKey = tab.getAttribute('data-city');
+                    setCity(cityKey);
+                });
+            });
+
+            // Listener para el selector de ciudad en el formulario
+            if (targetCitySelect) {
+                targetCitySelect.addEventListener('change', (e) => {
+                    updateFormButtonText(e.target.value);
+                });
+            }
+
+            // 1. Menú Móvil Toggle
+            const menuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const menuIconOpen = document.getElementById('menu-icon-open');
+            const menuIconClose = document.getElementById('menu-icon-close');
+            const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+
+            function toggleMenu() {
+                const isHidden = mobileMenu.classList.contains('hidden');
+                if (isHidden) {
+                    mobileMenu.classList.remove('hidden');
+                    menuIconOpen.classList.add('hidden');
+                    menuIconClose.classList.remove('hidden');
+                } else {
+                    mobileMenu.classList.add('hidden');
+                    menuIconOpen.classList.remove('hidden');
+                    menuIconClose.classList.add('hidden');
+                }
+            }
+
+            if (menuBtn) {
+                menuBtn.addEventListener('click', toggleMenu);
+            }
+
+            mobileNavLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        toggleMenu();
+                    }
+                });
+            });
+
+            // 2. Redirección Dinámica de Formulario a WhatsApp por Sede
+            const contactForm = document.getElementById('contact-form');
+            const contactSuccess = document.getElementById('contact-success');
+            const fallbackWaLink = document.getElementById('fallback-wa-link');
+
+            if (contactForm) {
+                contactForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+
+                    const name = document.getElementById('name').value.trim();
+                    const phone = document.getElementById('phone').value.trim();
+                    const selectedCityKey = targetCitySelect.value;
+                    const subject = document.getElementById('subject').value;
+                    const email = document.getElementById('email').value.trim();
+                    const message = document.getElementById('message').value.trim();
+
+                    const cityInfo = citiesData[selectedCityKey] || citiesData.villavicencio;
+
+                    // Construir el mensaje formateado para WhatsApp
+                    let waText = `*NUEVA CONSULTA - ENVAPLAS*\n`;
+                    waText += `📍 *Sede de Destino:* ${cityInfo.title}\n`;
+                    waText += `👤 *Nombre:* ${name}\n`;
+                    waText += `📱 *Teléfono / WhatsApp:* ${phone}\n`;
+                    if (email) waText += `📧 *Correo:* ${email}\n`;
+                    waText += `📌 *Motivo:* ${subject}\n`;
+                    waText += `💬 *Mensaje:* ${message}`;
+
+                    const waUrl = `https://wa.me/${cityInfo.phoneRaw}?text=${encodeURIComponent(waText)}`;
+
+                    // Abrir WhatsApp en una nueva pestaña
+                    window.open(waUrl, '_blank');
+
+                    // Mostrar banner de confirmación con enlace manual por si falla el popup
+                    if (fallbackWaLink) fallbackWaLink.href = waUrl;
+                    contactSuccess.classList.remove('hidden');
+
+                    // Limpiar el formulario
+                    contactForm.reset();
+                    updateFormButtonText(selectedCityKey);
+
+                    setTimeout(() => {
+                        contactSuccess.classList.add('hidden');
+                    }, 10000);
+                });
+            }
+        });
+    </script>
+</body>
+</html>
